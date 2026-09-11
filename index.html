@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>การ์ดเชิญงานแต่งงาน บุ๋ม&เอฟ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600;700&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: #f5ead9; /* โทนครีมล้านนา */
+    color: #3e2b1f;
+    scroll-behavior: smooth;
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(60,35,20,0.45), rgba(60,35,20,0.45)),
+                url('cover.jpg') center/cover; /* <-- วางไฟล์ cover.jpg ในโฟลเดอร์เดียวกัน */
+    background-color: #b5734a; /* สีสำรองถ้าไม่มีรูป */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fdf3e3;
+    text-align: center;
+    position: relative;
+  }
+  .hero p.tag { font-size: 1.1rem; letter-spacing: 4px; margin-bottom: 8px; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  }
+  .hero .date-badge {
+    margin-top: 20px;
+    padding: 10px 28px;
+    border: 1px solid #d9b26a;
+    background: rgba(217,178,106,0.15);
+    border-radius: 30px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.9rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+  }
+
+  section { padding: 70px 20px; text-align: center; }
+  section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #a86b2d; /* ทองอมน้ำตาล */
+  }
+
+  /* Countdown */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .countdown div {
+    background: #fffaf0;
+    padding: 20px 25px;
+    border-radius: 15px;
+    border: 1px solid #e6c799;
+    box-shadow: 0 5px 15px rgba(165,105,45,0.12);
+    min-width: 90px;
+  }
+  .countdown span {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #a86b2d;
+  }
+  .countdown small { color: #8a6a4d; }
+
+  /* Event Details */
+  .details {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+  }
+  .details .card {
+    background: #fffaf0;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #e6c799;
+    box-shadow: 0 5px 15px rgba(165,105,45,0.12);
+    max-width: 300px;
+  }
+  .details .card h3 { color: #a86b2d; margin-bottom: 10px; }
+
+  /* Map */
+  .map-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #a86b2d;
+    color: #fffaf0;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: 0.3s;
+  }
+  .map-btn:hover { background: #8a5622; }
+
+ /* อวยพร */
+  .padlet-embed {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: #a86b2d;
+    color: #a86b2d;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: 0.3s;}
+
+   .padlet-embed:hover { 
+        background: #8a5622; }
+   
+</style>
+</head>
+
+  <!-- เพลง -->>
+  <audio id="music" src="song1.mp3" loop preload="auto"></audio>
+  <p>เพลงจะเล่นอัตโนมัติ (หรือเมื่อคลิกที่ใดก็ได้)</p>
+
+  <script>
+
+   const music = document.getElementById("music");
+
+    music.volume = 0.6; // ปรับระดับเสียง 0.0 - 1.0
+
+    // 1) ลองเล่นทันที
+    music.play().catch(() => {
+
+      // 2) ถ้าถูกบล็อก → รอให้ผู้ใช้คลิก/แตะ/กดปุ่มครั้งแรก
+      const unlock = () => {
+        music.play();
+        ['click', 'touchstart', 'keydown'].forEach(e =>
+          document.removeEventListener(e, unlock)
+        );
+      };
+
+      ['click', 'touchstart', 'keydown'].forEach(e =>
+
+        document.addEventListener(e, unlock)
+
+      );
+   });
+
+  </script>
+  
+  <!-- Hero -->
+  <div class="hero">
+    <p class="tag">WE ARE GETTING MARRIED</p>
+    <h1>บุ๋ม & เอฟ</h1>
+    <div class="date-badge">5 ธันวาคม 2569</div>
+    <div class="scroll-hint">▼ เลื่อนลงเพื่อดูรายละเอียด</div>
+  </div>
+<body>
+
+  <!-- Countdown -->
+  <section>
+    <h2>นับถอยหลังสู่วันสำคัญ</h2>
+    <div class="countdown">
+      <div><span id="days">00</span><small>วัน</small></div>
+      <div><span id="hours">00</span><small>ชั่วโมง</small></div>
+      <div><span id="minutes">00</span><small>นาที</small></div>
+      <div><span id="seconds">00</span><small>วินาที</small></div>
+    </div>
+  </section>
+  <script>
+  // วันที่งานแต่ง: 5 ธันวาคม 2569 (ค.ศ. 2026)
+  const weddingDate = new Date(2026, 11, 5, 15, 0, 0).getTime();
+
+  const countdown = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    document.getElementById("days").innerText = Math.floor(distance / (1000*60*60*24));
+    document.getElementById("hours").innerText = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    document.getElementById("minutes").innerText = Math.floor((distance % (1000*60*60)) / (1000*60));
+    document.getElementById("seconds").innerText = Math.floor((distance % (1000*60)) / 1000);
+
+    if (distance < 0) {
+      clearInterval(countdown);
+      document.querySelector('.countdown').innerHTML = "<h3>💍 ถึงวันสำคัญแล้ว! 💍</h3>";
+    }
+  }, 1000);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    alert("ขอบคุณสำหรับการยืนยันครับ/ค่ะ 🙏");
+    e.target.reset();
+  }
+ </script>
+
+
+  <!-- Event Details -->
+  <section>
+    <h2>รายละเอียดงาน</h2>
+    <div class="details">
+      <div class="card">
+        <h3>🌸 พิธีแห่ขันหมาก🌸 </h3>
+        <p>เวลา 15:09 น.</p>
+        <p>ณ You Love Me Lampang</p>
+      </div> 
+      <div class="card">
+        <h3>💍 พิธีสวมแหวน💍 </h3>
+	      <p>เวลา 15:39 น.</p>
+        <p>ณ You Love Me Lampang</p>
+      </div>     
+      <div class="card">
+        <h3>🕊️ พิธีผูกข้อมือ🕊️ </h3>
+	      <p>เวลา 16:09 น.</p>
+        <p>ณ You Love Me Lampang</p>
+      </div>
+      <div class="card">
+        <h3>🍽️ งานเลี้ยงฉลอง🍽️ </h3>
+        <p>เวลา 18:00 น. เป็นต้นไป</p>
+        <p>ณ You Love Me Lampang</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map -->
+  <section>
+    <h2>สถานที่จัดงาน</h2>
+    <p>You Love Me Lampang</p>
+    <a class="map-btn" href="https://maps.app.goo.gl/MkVHVSsogJDG9Z5o8" target="_blank">📍 เปิดดูแผนที่ใน Google Maps</a>
+ 
+    <div class="map-container" style="margin-top: 20px; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+       <iframe 
+         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3791.144166458591!2d99.47351847582273!3d18.15727158016941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30d94124eb882f03%3A0x64f6c537695a9f79!2sYou%20love%20me%20Lampang!5e0!3m2!1sth!2sth!4v1788601658763!5m2!1sth!2sth" 
+         width="1080" 
+         height="720" 
+         style="border:0;" 
+         allowfullscreen="" 
+         loading="lazy" 
+         referrerpolicy="strict-origin-when-cross-origin">
+       </iframe>
+    </div>
+ </section>
+
+     <style>
+  .wish-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 16px;
+  }
+  .wish-box {
+    flex: 1 1 480px; /* ขั้นต่ำ 480px ก่อนจะตัดบรรทัด */
+    max-width: 680px;
+  }
+  @media (max-width: 820px) {
+    .wish-container { flex-direction: column; align-items: center; }
+  }
+   </style>
+
+<div class="wish-container">
+
+
+  <!-- คำอวยพร -->
+    <style>
+        *                
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }       
+
+        h1 {
+            text-align: center;
+            color: #a86b2d;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        f1 {
+            text-align: center;
+            color: #a86b2d;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+            
+    </style>
+
+    <!-- ฟอนต์ไทย -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+    <!-- กระดานคำอวยพร padlet -->
+<section>
+<f1>🎉📖✏️💛 กระดานคำอวยพร 💛✏️📖🎉</f1>
+<style>
+        .padlet-font f1 {
+            color: #666666;
+            margin-bottom: 10px;
+            font-size: 16px; /* เพิ่มบรรทัดนี้เพื่อปรับขนาดคำอธิบาย */
+        }
+</style>
+<div class="padlet-embed" 
+         style="border:1px solid rgba(0,0,0,0.1);
+                border-radius: 15px;
+                box-sizing:border-box;
+                overflow:hidden;position:relative;width:100%;
+                background:#fffaf0"
+        >
+     <p 
+        style="padding:0;
+               margin:0"
+        
+        >
+     <iframe src="https://padlet.com/embed/s023gvb8ziezkakdv7v0" 
+             frameborder="0" 
+             allow="camera;microphone;geolocation;display-capture;clipboard-write" 
+             style="width:100%;height:608px;display:block;padding:0;margin:0"
+             >
+     </iframe>
+    </p>
+</div>
+</section>
+
+
